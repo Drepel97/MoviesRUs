@@ -63,12 +63,10 @@ searchButton.addEventListener("click", function(){
     })
         
     .then(function(streamingData){
-        let tempArray = []
-console.log(streamingData)
+        let tempArray = [];
         for (let i = 0; i < streamingData.length; i++) {
             let streamingList = streamingData[i].name + ": " + streamingData[i].type;
             if (!tempArray.includes(streamingList)){
-
                 tempArray.push(streamingList)
                 console.log(streamingList); 
                 let streamingSource = document.createElement("li");
