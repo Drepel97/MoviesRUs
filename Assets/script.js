@@ -1,9 +1,10 @@
 let searchBar = document.querySelector("#searchBar");
 let searchButton = document.querySelector("#searchButton");
-let movieReview = document.querySelector("#movieReview")
-const imdbKey = 'k_r35hmdo3'
-let imdbId 
-
+let movieReview = document.querySelector("#movieReview");
+const imdbKey = 'k_r35hmdo3';
+let imdbId; 
+let streamingDataEl = document.querySelector("#streamingData");
+console.log(streamingDataEl);
 // .then(function(searchData){
 //     let searchList = searchData.movie.title;
 //     console.log(searchList);
@@ -62,11 +63,19 @@ searchButton.addEventListener("click", function(){
     })
         
     .then(function(streamingData){
-
+        let tempArray = []
+console.log(streamingData)
         for (let i = 0; i < streamingData.length; i++) {
             let streamingList = streamingData[i].name + ": " + streamingData[i].type;
-            console.log(streamingList); 
-            
+            if (!tempArray.includes(streamingList)){
+
+                tempArray.push(streamingList)
+                console.log(streamingList); 
+                let streamingSource = document.createElement("li");
+                streamingSource.textContent = streamingList;
+                console.log(streamingSource);
+                streamingDataEl.append(streamingSource);
+            }
         }
 
     })
