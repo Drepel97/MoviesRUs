@@ -31,14 +31,7 @@ searchButton.addEventListener("click", function(){
         console.log(data.results[0].id)
         imdbId = data.results[0].id;
         getMovieData(imdbId)
- 
-
-
-
-    
-
 })
-
 
 function getMovieData(imdbId){
     fetch (`https://api.watchmode.com/v1/title/${imdbId}/sources/?apiKey=${watchmodeKey}`)
@@ -101,6 +94,7 @@ fetch(`https://imdb-api.com/API/FullCast/k_usqngafa/${imdbId}`)
     }
     })
 
+fetch(`https://imdb-api.com/API/Reviews/k_dl1tf84m/${imdbId}/`)
 .then(response => response.json())
 .then(function(reviewData){
     console.log(reviewData)
