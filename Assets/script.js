@@ -7,6 +7,10 @@ let streamingDataEl = document.querySelector("#streamingData");
 console.log(streamingDataEl);
 let watchmodeKey = "RnlyvnUUMGtLIR0G4HawMh6rI5tprrcGonEYHw4c";
 let castEl = document.querySelector("#cast");
+let reviewEl = document.querySelector("#reviewEl");
+let searchInput = searchBar.value;
+let movieList = JSON.parse(localStorage.getItem("movie")) || [];
+let recentlySearched = document.querySelector("#recentlySearched");
 // .then(function(searchData){
 //     let searchList = searchData.movie.title;
 //     console.log(searchList);
@@ -14,106 +18,140 @@ let castEl = document.querySelector("#cast");
 
 
 searchButton.addEventListener("click", function(){
-    console.log(searchBar.value);
     
-
+    
+    
+    console.log(searchBar.value);
+    movieList.push(searchBar.value);
+    renderBtn();
+    localStorage.setItem("movie", JSON.stringify(movieList));
+    
     // SEARCH MOVIE AND REVIEW
-    fetch('https://imdb-api.com/en/API/SearchMovie/k_dl1tf84m/' + searchBar.value)
+    fetch(`https://imdb-api.com/en/API/SearchMovie/${imdbKey}/` + searchBar.value)
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
         console.log(data.results[0].id)
         imdbId = data.results[0].id;
         getMovieData(imdbId)
-})
-
-function getMovieData(imdbId){
-    fetch (`https://api.watchmode.com/v1/title/${imdbId}/sources/?apiKey=${watchmodeKey}`)
-    .then(function (response) {
+    })
+    
+    function getMovieData(imdbId){
+        fetch (`https://api.watchmode.com/v1/title/${imdbId}/sources/?apiKey=${watchmodeKey}`)
+        .then(function (response) {
             
-        return response.json();
-    
-    })
+            return response.json();
+            
+        })
         
-    .then(function(streamingData){
-        let tempArray = [];
-        for (let i = 0; i < streamingData.length; i++) {
-            let streamingList = streamingData[i].name + ": " + streamingData[i].type;
-            if (!tempArray.includes(streamingList)){
-                tempArray.push(streamingList)
-                console.log(streamingList); 
-                let streamingSource = document.createElement("li");
-                streamingSource.textContent = streamingList;
-                console.log(streamingSource);
-                streamingDataEl.append(streamingSource);
+        .then(function(streamingData){
+            let tempArray = [];
+            for (let i = 0; i < streamingData.length; i++) {
+                let streamingList = streamingData[i].name + ": " + streamingData[i].type;
+                if (!tempArray.includes(streamingList)){
+                    tempArray.push(streamingList)
+                    console.log(streamingList); 
+                    let streamingSource = document.createElement("li");
+                    streamingSource.textContent = streamingList;
+                    console.log(streamingSource);
+                    streamingDataEl.append(streamingSource);
+                }
             }
-        }
-
-//    tt1375666/
-    })
-
+            
+            //    tt1375666/
+        })
+        
         // TRAILER FETCH
-// need to make sure this is plugged into the input
-fetch (`https://imdb-api.com/en/API/Trailer/k_r35hmdo3/${imdbId}`)
-.then(function (response) {
+        // need to make sure this is plugged into the input
+        fetch (`https://imdb-api.com/en/API/Trailer/${imdbKey}/${imdbId}`)
+        .then(function (response) {
+            
+            return response.json();
+            
+        })
         
-    return response.json();
-
-})
-    
-.then(function(trailerData){
-    
-   console.log(trailerData); 
-   let trailerVideo = trailerData.link;
-   let linkArray = trailerVideo.split("")
-   linkArray.splice(27, 20);
-   trailerVideo = linkArray.join("");
-   console.log(trailerVideo);
-   document.querySelector("#trailer").href = trailerVideo;
-
-})
-
-
-fetch(`https://imdb-api.com/API/FullCast/k_usqngafa/${imdbId}`)
-    .then(response => response.json())
-    .then(function(castData){
-       let castList = castData.actors;
-       for (let i = 0; i < castList.length; i++) {
-        const actorList = castList[i];
-        console.log(actorList.name);
-        let actorName = actorList.name;
-        let castMember = document.createElement("li");
-        castMember.textContent = actorName;
-        castEl.append(castMember);
+        .then(function(trailerData){
+            
+            console.log(trailerData); 
+            let trailerVideo = trailerData.link;
+            let linkArray = trailerVideo.split("")
+            linkArray.splice(27, 20);
+            trailerVideo = linkArray.join("");
+            console.log(trailerVideo);
+            document.querySelector("#trailer").href = trailerVideo;
+            
+        })
+        
+        
+        fetch(`https://imdb-api.com/API/FullCast/${imdbKey}/${imdbId}`)
+        .then(response => response.json())
+        .then(function(castData){
+            let castList = castData.actors;
+            for (let i = 0; i < castList.length; i++) {
+                const actorList = castList[i];
+                console.log(actorList.name);
+                let actorName = actorList.name;
+                let castMember = document.createElement("li");
+                castMember.textContent = actorName;
+                castEl.append(castMember);
+            }
+        })
+        
+        fetch(`https://imdb-api.com/API/Reviews/${imdbKey}/${imdbId}/`)
+        .then(response => response.json())
+        .then(function(reviewData){
+            console.log(reviewData)
+            let reviewList = reviewData.items;
+            for (let i = 0; i < reviewList.length; i++) {
+                const itemsList = reviewList[i];
+                console.log(itemsList.content);
+                let reviewItems = itemsList.content;
+                let movieReview = document.createElement("p");
+                movieReview.textContent = reviewItems;
+                reviewEl.append(movieReview);
+                
+                
+                
+                
+            }
+            
+            searchBar.value = "";
+        })
+        
     }
-    })
-
-fetch(`https://imdb-api.com/API/Reviews/k_dl1tf84m/${imdbId}/`)
-.then(response => response.json())
-.then(function(reviewData){
-    console.log(reviewData)
-    let reviewList = reviewData.items;
-    console.log(reviewList)
-
     
-    for (let i = 0; i < reviewList.length; i++) {
-        const itemsList = reviewList[i];
-        console.log(itemsList.content);
-        
-   }
-   searchBar.value = "";
 })
 
+function renderBtn(){
+    recentlySearched.innerHTML = "";
+    for (let i = 0; i < movieList.length; i++) {
+        const movie = movieList[i];
+        let newSearchBtn = document.createElement("button");
+        newSearchBtn.textContent = movie;
+        recentlySearched.append(newSearchBtn);
+    }
+    
 }
+renderBtn();
+
+recentlySearched.addEventListener("click", function(event){
+    if(event.target.matches("button")) {
+        getMovieData(event.target.textContent)
+        
+
+
+    }
 })
+
+
 // fetch ("https://imdb-api.com/en/API/Trailer/k_r35hmdo3/tt0110413")
 // .then(function (response) {
     
-//     return response.json();
+    //     return response.json();
     
-// })
-
-// .then(function(trailerData){
+    // })
+    
+    // .then(function(trailerData){
     
 //     console.log(trailerData); 
 //     let trailerVideo = trailerData.link;
