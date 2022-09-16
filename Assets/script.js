@@ -4,8 +4,6 @@ let movieReview = document.querySelector("#movieReview");
 const imdbKey = 'k_r35hmdo3';
 let imdbId; 
 let streamingDataEl = document.querySelector("#streamingData");
-let castEl = document.querySelector("#cast");
-let castSection = document.querySelector("#castSection");
 console.log(streamingDataEl);
 // .then(function(searchData){
 //     let searchList = searchData.movie.title;
@@ -76,11 +74,7 @@ searchButton.addEventListener("click", function(){
     
        for (let i = 0; i < castList.length; i++) {
         const actorList = castList[i];
-        console.log(actorList.name);
-        let actorName = actorList.name;
-        let castMember = document.createElement("li");
-        castMember.textContent = actorName;
-        castEl.append(castMember);
+        console.log(actorList.name)
     }
     });
 
