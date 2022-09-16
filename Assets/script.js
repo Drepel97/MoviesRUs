@@ -5,16 +5,7 @@ const imdbKey = 'k_r35hmdo3';
 let imdbId; 
 let streamingDataEl = document.querySelector("#streamingData");
 console.log(streamingDataEl);
-// .then(function(searchData){
-//     let searchList = searchData.movie.title;
-//     console.log(searchList);
 
-// .then(function(movieReview){
-//     fetch('https://imdb-api.com/API/Reviews/k_dl1tf84m/tt1375666/' + movieReview.value)
-//     .then((response) => response.json())
-//     .then((data) => console.log(data));
-    
-// })
 
 
 searchButton.addEventListener("click", function(){
