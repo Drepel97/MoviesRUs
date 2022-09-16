@@ -106,7 +106,8 @@ fetch(`https://imdb-api.com/API/Reviews/k_dl1tf84m/${imdbId}/`)
         const itemsList = reviewList[i];
         console.log(itemsList.content);
         
-    }
+   }
+   searchBar.value = "";
 })
 
 }
