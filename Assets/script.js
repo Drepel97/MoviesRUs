@@ -22,6 +22,14 @@ searchButton.addEventListener("click", function(){
     if (castEl != ""){
         castEl.textContent = ""
     }
+
+    if (streamingDataEl != ""){
+        streamingDataEl.textContent = ""
+    }
+
+    if (reviewEl != ""){
+        reviewEl.textContent = ""
+    }
     
     console.log(searchBar.value);
     movieList.push(searchBar.value);
@@ -110,7 +118,7 @@ searchButton.addEventListener("click", function(){
                 const itemsList = reviewList[i];
                 console.log(itemsList.content);
                 let reviewItems = itemsList.content;
-                let movieReview = document.createElement("p");
+                let movieReview = document.createElement("li");
                 movieReview.textContent = reviewItems;
                 reviewEl.append(movieReview);
                 
@@ -133,6 +141,7 @@ function renderBtn(){
         let newSearchBtn = document.createElement("button");
         newSearchBtn.textContent = movie;
         recentlySearched.append(newSearchBtn);
+        newSearchBtn.classList.add("searchHistoryBtn");
     }
     
 }
