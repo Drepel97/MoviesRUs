@@ -19,7 +19,9 @@ let recentlySearched = document.querySelector("#recentlySearched");
 
 searchButton.addEventListener("click", function(){
     
-    
+    if (castEl != ""){
+        castEl.textContent = ""
+    }
     
     console.log(searchBar.value);
     movieList.push(searchBar.value);
@@ -75,7 +77,9 @@ searchButton.addEventListener("click", function(){
             console.log(trailerData); 
             let trailerVideo = trailerData.link;
             let linkArray = trailerVideo.split("")
-            linkArray.splice(27, 20);
+            console.log(linkArray, "after split")
+            // linkArray.splice(27, 20);
+            // console.log(linkArray, "after splice")
             trailerVideo = linkArray.join("");
             console.log(trailerVideo);
             document.querySelector("#trailer").href = trailerVideo;
@@ -87,7 +91,7 @@ searchButton.addEventListener("click", function(){
         .then(response => response.json())
         .then(function(castData){
             let castList = castData.actors;
-            for (let i = 0; i < castList.length; i++) {
+            for (let i = 0; i < 10; i++) {
                 const actorList = castList[i];
                 console.log(actorList.name);
                 let actorName = actorList.name;
@@ -102,7 +106,7 @@ searchButton.addEventListener("click", function(){
         .then(function(reviewData){
             console.log(reviewData)
             let reviewList = reviewData.items;
-            for (let i = 0; i < reviewList.length; i++) {
+            for (let i = 0; i < 2; i++) {
                 const itemsList = reviewList[i];
                 console.log(itemsList.content);
                 let reviewItems = itemsList.content;
