@@ -8,9 +8,9 @@
 We created a page to search movies and then show the cast, reviews, link to trailer, and where to stream. We ran into challenges along the way with git and our APIs, but were able to learn a lot and overcome. We were able to get all information on the page and with the functionality we desired.
 
 ## Built With
-- IMDb API
-- WATCHMODE API
-- Bulma CSS Framework
+- [IMDb API](https://imdb-api.com/api)
+- [WATCHMODE API](https://api.watchmode.com/dashboard/)
+- [Bulma CSS Framework](https://bulma.io/)
 - Javascript
 - CSS
 - HTML
