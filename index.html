@@ -1,114 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MoviesRUs</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="./Assets/styles.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./Assets/styles.css" />
+  </head>
 
-<body>
-
+  <body>
     <section class="hero is-primary is-medium">
-        <!-- Hero head: will stick at the top -->
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item">
-                        </a>
-                        <span class="navbar-burger" data-target="navbarMenuHeroA">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
-        <!-- Hero content: will be in the middle -->
-        <div class="hero-body">
-
-            <div class="container has-text-centered">
-                <p class="title">
-                    MoviesRUs
-                </p>
+      <!-- Hero head: will stick at the top -->
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item"> </a>
+              <span class="navbar-burger" data-target="navbarMenuHeroA">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
             </div>
-        </div>
+          </div>
+        </nav>
+      </div>
 
-        <!-- Hero footer: will stick at the bottom -->
-        <div class="hero-foot">
-            <nav class="tabs">
-                <div class="container">
-                    <ul>
-
-                        <li><a href="#trailerSection">Trailer</a></li>
-                        <li><a href="#castSection">Cast</a></li>
-                        <li><a href="#streamingSection">Where2Watch</a></li>
-                        <li><a href="#reviewSection" >Reviews</a></li>
-                    </ul>
-                </div>
-            </nav>
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">MoviesRUs</p>
         </div>
+      </div>
+
+      <!-- Hero footer: will stick at the bottom -->
+      <div class="hero-foot">
+        <!-- <nav class="tabs">
+          <div class="container">
+            <ul>
+              <li><a href="#trailerSection">Trailer</a></li>
+              <li><a href="#castSection">Cast</a></li>
+              <li><a href="#streamingSection">Where2Watch</a></li>
+              <li><a href="#reviewSection">Reviews</a></li>
+            </ul>
+          </div>
+        </nav> -->
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            
+          <div class="navbar-brand">
+            <!-- <a class="navbar-item" href="https://bulma.io">
+              <img
+                src="https://bulma.io/images/bulma-logo.png"
+                width="112"
+                height="28"
+              />
+            </a> -->
+
+            <a
+              role="button"
+              class="navbar-burger"
+              aria-label="menu"
+              aria-expanded="false"
+              data-target="navbarBasicExample"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+              <a class="navbar-item" href="#trailerSection">Trailer</a>
+
+              <a class="navbar-item" href="#castSection">Cast</a>
+              
+              <a class="navbar-item" href="#streamingSection">Where2Watch</a>
+              
+              <a class="navbar-item" href="#reviewSection">Reviews</a>
+
+              
+            </div>
+          </div>
+          </div>
+        </nav>
+      </div>
     </section>
 
-
-    <div class="field has-addons section is-medium">
-        <input class="input is-rounded input is-primary input is-large" id="searchBar" type="text"
-            placeholder="Search Movie">
-        <!-- <input id= "searchBar" type="text"> -->
-        <button class="button is-primary is-rounded is-hovered is-large" id="searchButton">Search</button>
+    <div class="field has-addons section is-small">
+      <input
+        class="input is-rounded input is-primary input is-large"
+        id="searchBar"
+        type="text"
+        placeholder="Search Movie"
+      />
+      <!-- <input id= "searchBar" type="text"> -->
+      <button
+        class="button is-primary is-rounded is-hovered is-large"
+        id="searchButton"
+      >
+        Search
+      </button>
     </div>
 
     <section id="trailerSection" class="hero is-link">
-        <div class="hero-body">
-            <p class="title">
-                Trailer
-            </p>
-            <p class="subtitle">
-
-                <a id="trailer" href="">Link to Trailer</a>
-            </p>
-        </div>
+      <div class="hero-body">
+        <p class="title">Trailer</p>
+        <p class="subtitle">
+          <a id="trailer" href="">Link to Trailer</a>
+        </p>
+      </div>
     </section>
 
-    <section class="section is-medium" id="castSection">
-        <h1 class="title">Cast</h1>
-            <ul id="cast">
-          </ul>
-      </section>
+    <section class="section is-small" id="castSection">
+      <h1 class="title">Cast</h1>
+      <ul id="cast"></ul>
+    </section>
 
     <section id="streamingSection" class="hero is-primary">
-        <div class="hero-body">
-            <p class="title">
-                Where2Watch
-            </p>
-            <ul id="streamingData" class="subtitle">
-            </ul>
-        </div>
+      <div class="hero-body">
+        <p class="title">Where2Watch</p>
+        <ul id="streamingData" class="subtitle"></ul>
+      </div>
     </section>
-    <section id="reviewSection" class="section is-large">
-        <h1 class="title">Reviews</h1>
+    <section id="reviewSection" class="section is-small">
+      <h1 class="title">Reviews</h1>
 
-        <ul id="reviewEl">
+      <ul id="reviewEl"></ul>
+    </section>
 
-        </ul>
+    <section id="recentSearchSection" class="section is-small">
+      <h1 class="title">Recently Searched</h1>
+      <h1 id="recentlySearched"></h1>
     </section>
-       
-      
-    <section>
-        <h1 class="title">Recently Searched</h1>
-          <h1 id="recentlySearched"></h1>
-    </section>
-    
-    
-    
-    
+
     <script src="./Assets/script.js"></script>
-</body>
-
+  </body>
 </html>
